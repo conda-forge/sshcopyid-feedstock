@@ -14,15 +14,15 @@ build:
     - ssh-copy-id=sshcopyid.cli:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
     - setuptools
   run:
-    - python >=3.7
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -32,6 +32,7 @@ test:
     - ssh-copy-id --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/meena-erian/ssh-copy-id
